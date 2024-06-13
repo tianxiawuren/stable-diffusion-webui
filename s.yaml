@@ -1,0 +1,52 @@
+edition: 1.0.0
+name: fc-stable-diffusion
+access: default
+services:
+  cn-shanghai-stable-diffusion-sd:
+    component: devsapp/fc
+    props:
+      region: cn-shanghai
+      service:
+        description: stable-diffusion部署到函数计算
+        internetAccess: true
+        name: stable-diffusion
+      function:
+        handler: index.handler
+        timeout: 600
+        diskSize: 10240
+        caPort: 7860
+        instanceType: fc.gpu.tesla.1
+        runtime: custom-container
+        cpu: 8
+        customContainerConfig:
+          args: ''
+          accelerationType: Default
+          image: registry.cn-shanghai.aliyuncs.com/vipas/stable-diffusion-web:v2
+          accelerationInfo:
+            status: Preparing
+          command: ''
+          webServerMode: true
+        instanceConcurrency: 1
+        memorySize: 32768
+        environmentVariables: {}
+        gpuMemorySize: 16384
+        name: sd
+        asyncConfiguration: {}
+      triggers:
+        - name: defaultTrigger
+          description: ''
+          type: http
+          qualifier: LATEST
+          config:
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            authType: anonymous
+            disableURLInternet: false
+      customDomains:
+        - domainName: auto
+          protocol: HTTP
+          routeConfigs:
+            - path: /*
