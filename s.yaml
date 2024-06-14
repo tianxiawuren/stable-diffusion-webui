@@ -2,10 +2,10 @@ edition: 1.0.0
 name: fc-stable-diffusion
 access: default
 services:
-  cn-shanghai-stable-diffusion-sd:
+  cn-hangzhou-stable-diffusion-sd:
     component: devsapp/fc
     props:
-      region: cn-shanghai
+      region: cn-hangzhou
       service:
         description: stable-diffusion部署到函数计算
         internetAccess: true
