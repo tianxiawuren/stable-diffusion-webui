@@ -21,7 +21,7 @@ services:
         customContainerConfig:
           args: ''
           accelerationType: Default
-          image: registry.cn-shanghai.aliyuncs.com/vipas/stable-diffusion-web:v2
+          image: registry.cn-hangzhou.aliyuncs.com/vipas/stable-diffusion-web:v2
           accelerationInfo:
             status: Preparing
           command: ''
